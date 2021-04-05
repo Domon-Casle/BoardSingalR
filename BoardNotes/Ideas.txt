@@ -1,0 +1,27 @@
+Kanban board
+	To Do		In Progress	Done
+	[CARD]		[CARD]		[CARD]
+
+[CARD]
+	Document - Epic level
+		Document - Story
+			Document - Task (later)
+
+	Epic Level
+	[Title]
+	[StartDate]	[EndDate]
+	[Prioity]	[Size]
+	[Primary StakeHolder]
+
+	Story Level
+	[Title]
+	[StartDate]	[EndDate]
+	[Prioity]	[Size]
+	[Dev Resource]	[QA Resource]
+
+	Task Level (later)
+	[Title]
+	[Dev Resource]	[QA Resource]
+
+Multi-user access
+On changes signalR request out to update other users
