@@ -17,3 +17,4 @@ D:\MyProjects\BoardSingalR\BoardApi\obj\Debug\netcoreapp3.1\BoardApi.RazorTarget
 D:\MyProjects\BoardSingalR\BoardApi\obj\Debug\netcoreapp3.1\BoardApi.dll
 D:\MyProjects\BoardSingalR\BoardApi\obj\Debug\netcoreapp3.1\BoardApi.pdb
 D:\MyProjects\BoardSingalR\BoardApi\obj\Debug\netcoreapp3.1\BoardApi.genruntimeconfig.cache
+D:\MyProjects\BoardSingalR\BoardApi\obj\Debug\netcoreapp3.1\BoardApi.csprojAssemblyReference.cache

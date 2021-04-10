@@ -10,13 +10,13 @@ Kanban board
 	Epic Level
 	[Title]
 	[StartDate]	[EndDate]
-	[Prioity]	[Size]
+	[Priority]	[Size]
 	[Primary StakeHolder]
 
 	Story Level
 	[Title]
 	[StartDate]	[EndDate]
-	[Prioity]	[Size]
+	[Priority]	[Size]
 	[Dev Resource]	[QA Resource]
 
 	Task Level (later)

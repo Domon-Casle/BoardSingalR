@@ -1,0 +1,19 @@
+<div>
+    <div class="row headers">
+        <div class="column">To Do</div>
+        <div class="column">In Progress</div>
+        <div class="column">Done</div>
+    </div>
+
+    <div>
+        <div class="column">
+            <app-card *ngFor="let item in todo" [Status]="todoStatus"></app-card>
+        </div>
+        <div class="column">
+            <app-card *ngFor="let item in inProgress" [Status]="inProgressStatus"></app-card>
+        </div>
+        <div class="column">
+            <app-card *ngFor="let item in done" [Status]="doneStatus"></app-card>
+        </div>
+    </div>
+</div>
