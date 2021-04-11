@@ -4,7 +4,7 @@ namespace BoardApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TaskController : ControllerBase
+    public class TasksController : ControllerBase
     {
     }
 }

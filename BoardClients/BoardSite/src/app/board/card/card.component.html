@@ -1,1 +1,19 @@
-<p>card works!</p>
+<div class="card">
+    <div class="card-title">
+        <div class="title">
+            {{epic.title}}
+        </div>
+        <div class="priority">
+            <span class="{{priorityClass}} data">{{priority}}</span> <span class="data">({{tentSize}})</span>
+        </div>
+    </div>
+
+    <div class="card-details">
+        <div>
+            <span class="label">Start/End</span> <span class="data">{{epic.startDate | date}} to {{epic.endDate | date}}</span>
+        </div>
+        <div>
+            <span class="label">Stake Holder</span> <span class="data">{{epic.primaryStakeHolder}}</span>
+        </div>
+    </div>
+</div>

@@ -4,7 +4,7 @@ namespace BoardApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class StoryController : ControllerBase
+    public class StoriesController : ControllerBase
     {
     }
 }

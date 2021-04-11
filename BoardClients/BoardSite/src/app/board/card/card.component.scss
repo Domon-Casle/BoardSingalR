@@ -1,0 +1,49 @@
+.card {
+    padding: 15px;
+    margin-top: 10px;
+    margin-left: 2px;
+    margin-right: 2px;
+    border: 1px solid gray;
+
+    .card-title {
+        border-bottom: 1px solid black;
+
+        .title {
+            font-style: italic;
+            align-self: flex-start;
+            text-align: left;
+        }
+
+        .priority {
+            text-align: right;
+
+            .low {
+                color:green;
+            }
+
+            .medium {
+                color: orange;
+            }
+
+            .high {
+                color: red;
+            }
+        }
+
+        div {
+            display: inline-block;
+            width: 49%;
+        }
+    }
+
+    .card-details {        
+    }
+
+    .label {
+        padding-right: 5px;
+    }
+
+    .data {
+        font-style: italic;
+    }
+}

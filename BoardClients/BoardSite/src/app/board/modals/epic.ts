@@ -11,7 +11,7 @@ export class Epic extends BaseCard {
         startDate: Date = new Date(), 
         endDate: Date = new Date(), 
         priority: Priority = Priority.low, 
-        tentSize: TentSize = TentSize.mediumn,
+        tentSize: TentSize = TentSize.medium,
         status: Status = Status.Todo,
         primaryStakeHolder: string) {
         super(title, startDate, endDate, priority, tentSize, status);

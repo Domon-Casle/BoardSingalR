@@ -1,13 +1,32 @@
 .row {
     width: 100%;
-    border-bottom: 1px solid black;
+
+    &.headers {
+        font-weight: bold;
+        border-bottom: 1px solid black;
+
+        .column {
+            text-align: center;
+            font-size: 18px;
+        }
+    }
+
+    &.details {
+
+        .column {
+            border-right: 1px solid gray;
+            height: 95vh;
+            overflow-y: auto;
+            vertical-align: top;
+        }
+
+        .column:last-child {
+            border-right: 0px;
+        }        
+    }
 
     .column {
         width: 33%;
-        border: 1px solid black;
-    }
-
-    .headers {
-        font-weight: bold;
+        display: inline-block;
     }
 }

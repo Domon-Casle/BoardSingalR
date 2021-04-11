@@ -3,7 +3,7 @@
     public enum TentSize
     {
         Small,
-        Mediumn,
+        Medium,
         Large
     }
 }

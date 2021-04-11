@@ -5,15 +5,15 @@
         <div class="column">Done</div>
     </div>
 
-    <div>
+    <div class="row details">
         <div class="column">
-            <app-card *ngFor="let item in todo" [Status]="todoStatus"></app-card>
+            <app-card *ngFor="let item of todo" [epic]="item" [status]="todoStatus"></app-card>
         </div>
         <div class="column">
-            <app-card *ngFor="let item in inProgress" [Status]="inProgressStatus"></app-card>
+            <app-card *ngFor="let item of inProgress" [epic]="item" [status]="inProgressStatus"></app-card>
         </div>
         <div class="column">
-            <app-card *ngFor="let item in done" [Status]="doneStatus"></app-card>
+            <app-card *ngFor="let item of done" [epic]="item" [status]="doneStatus"></app-card>
         </div>
     </div>
 </div>

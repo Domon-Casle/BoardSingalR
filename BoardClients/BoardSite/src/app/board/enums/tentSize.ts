@@ -1,5 +1,5 @@
 export enum TentSize {
     small,
-    mediumn,
+    medium,
     large
 }
