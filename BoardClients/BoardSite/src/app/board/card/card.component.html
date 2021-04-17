@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" draggable="true" (dragstart)="dragStart($event)" (dragover)="allowDrop($event)" (drop)="drop($event)">
     <div class="card-title">
         <div class="title">
             {{epic.title}}

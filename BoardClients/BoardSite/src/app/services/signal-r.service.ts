@@ -13,6 +13,7 @@ export class SignalRService {
   constructor() {
     this.hubConnection = new signalR.HubConnectionBuilder()
       .withUrl('http://localhost:50543/docHub')
+      .withAutomaticReconnect()
       .build();
   }
 
@@ -27,5 +28,7 @@ export class SignalRService {
       this._data = data;
       console.log(data);
     });
+    // this.hubConnection.onreconnected
+    // this.hubConnection.onreconnecting
   };
 }

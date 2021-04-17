@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { Subject } from 'rxjs';
+import { DragService } from 'src/app/services/drag.service';
 import { Priority } from '../enums/priority';
 import { Status } from '../enums/status';
 import { TentSize } from '../enums/tentSize';
@@ -14,15 +16,35 @@ export class CardComponent implements OnInit {
   @Input() status!: Status;
   @Input() epic!: Epic;
   
+  @Output() dropEvent: Subject<Status> = new Subject<Status>();
+
   public tentSize: string = "";
   public priority: string = "";
   public priorityClass: string = "";
 
-  constructor() { }
+  constructor(
+    private dragService: DragService
+  ) { }
 
   ngOnInit(): void {
     this.setTentSize();
     this.setPriority();
+  }
+
+  public dragStart(event: DragEvent) {
+    event.stopPropagation();
+    this.dragService.setDragItem(this.epic);
+  }
+
+  public drop(event: DragEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+    console.log('drop card');
+    this.dropEvent.next(this.status);
+  }
+
+  public allowDrop(event: DragEvent) {
+    event.preventDefault();
   }
 
   private setTentSize() {

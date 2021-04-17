@@ -6,14 +6,26 @@
     </div>
 
     <div class="row details">
-        <div class="column">
-            <app-card *ngFor="let item of todo" [epic]="item" [status]="todoStatus"></app-card>
+        <div class="column" (dragover)="allowDrop($event, todoStatus)" (drop)="drop($event, todoStatus)">
+            <app-card 
+                *ngFor="let item of todo" 
+                [epic]="item" 
+                [status]="todoStatus"
+                (dropEvent)="handleDrop"></app-card>
         </div>
-        <div class="column">
-            <app-card *ngFor="let item of inProgress" [epic]="item" [status]="inProgressStatus"></app-card>
+        <div class="column" (dragover)="allowDrop($event, inProgressStatus)" (drop)="drop($event, inProgressStatus)">
+            <app-card 
+                *ngFor="let item of inProgress" 
+                [epic]="item" 
+                [status]="inProgressStatus"
+                (dropEvent)="handleDrop"></app-card>
         </div>
-        <div class="column">
-            <app-card *ngFor="let item of done" [epic]="item" [status]="doneStatus"></app-card>
+        <div class="column" (dragover)="allowDrop($event, doneStatus)" (drop)="drop($event, doneStatus)">
+            <app-card 
+                *ngFor="let item of done" 
+                [epic]="item" 
+                [status]="doneStatus"
+                (dropEvent)="handleDrop"></app-card>
         </div>
     </div>
 </div>
