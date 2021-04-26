@@ -1,14 +1,22 @@
 import { Injectable } from '@angular/core';
 import * as signalR from "@microsoft/signalr";
+import { Subject } from 'rxjs';
+import { Status } from '../board/enums/status';
+import { Epic } from '../board/modals/epic';
+
+export interface EpicUpdate {
+  epic: Epic,
+  status: Status
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class SignalRService {
 
-  private _data: any;
-
   private hubConnection: signalR.HubConnection;
+
+  public epicChanged: Subject<EpicUpdate> = new Subject<EpicUpdate>();
 
   constructor() {
     this.hubConnection = new signalR.HubConnectionBuilder()
@@ -24,11 +32,17 @@ export class SignalRService {
   }
 
   public addDocChangeListener = () => {
-    this.hubConnection.on('ReceiveMessage', (data) => {
-      this._data = data;
-      console.log(data);
+    this.hubConnection.on('UpdateEpic', (data: Epic, oldStatus: Status) => {
+      this.epicChanged.next({
+        epic: data,
+        status: oldStatus
+      });
     });
     // this.hubConnection.onreconnected
     // this.hubConnection.onreconnecting
-  };
+  }
+
+  public updateEpic(epic: Epic, oldStatus: number) {
+    this.hubConnection.invoke('UpdateEpic', epic, oldStatus);
+  }
 }

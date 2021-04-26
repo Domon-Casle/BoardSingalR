@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DragService } from '../services/drag.service';
 import { EpicsService } from '../services/epics.service';
+import { EpicUpdate, SignalRService } from '../services/signal-r.service';
 import { Status } from './enums/status';
 import { Epic } from './modals/epic';
 
@@ -24,7 +25,8 @@ export class BoardComponent implements OnInit {
 
   constructor(
     private epicsService: EpicsService,
-    private dragService: DragService
+    private dragService: DragService,
+    private signalRService: SignalRService
   ) { 
   }
 
@@ -35,6 +37,36 @@ export class BoardComponent implements OnInit {
     this.todo = epics.filter(e => e.status === Status.Todo);
     this.inProgress = epics.filter(e => e.status === Status.InProgress);
     this.done = epics.filter(e => e.status === Status.Done);
+
+    this.signalRService.epicChanged.subscribe((data: EpicUpdate) => {
+      switch(data.status) {
+        case Status.Todo:          
+          this.todo.splice(this.todo.findIndex(e => e.id === data.epic.id), 1);
+          break;
+
+        case Status.InProgress:
+          this.inProgress.splice(this.inProgress.findIndex(e => e.id === data.epic.id), 1);
+          break;
+
+        case Status.Done:
+          this.done.splice(this.done.findIndex(e => e.id === data.epic.id), 1);
+          break;
+      }
+
+      switch(data.epic.status) {
+        case Status.Todo:          
+          this.todo.push(data.epic);
+          break;
+
+        case Status.InProgress:
+          this.inProgress.push(data.epic);
+          break;
+
+        case Status.Done:
+          this.done.push(data.epic);
+          break;
+      }
+    });
     this.loading = false;
   }
 
@@ -54,8 +86,8 @@ export class BoardComponent implements OnInit {
     let index: number = 0;
 
     const draggedItem: Epic = this.dragService.getDragItem() as Epic;
-
-    switch(draggedItem.status) {
+    const oldStatus: Status = draggedItem.status;
+    switch(oldStatus) {
       case Status.Todo:
         index = this.todo.indexOf(draggedItem);
         this.todo.splice(index, 1);
@@ -88,5 +120,7 @@ export class BoardComponent implements OnInit {
         this.done.push(draggedItem);
         break;
     }
+
+    this.signalRService.updateEpic(draggedItem, oldStatus);
   }
 }

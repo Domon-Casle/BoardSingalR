@@ -7,6 +7,7 @@ export class Epic extends BaseCard {
     primaryStakeHolder: string;
 
     constructor(
+        Id: number,
         title: string, 
         startDate: Date = new Date(), 
         endDate: Date = new Date(), 
@@ -14,7 +15,7 @@ export class Epic extends BaseCard {
         tentSize: TentSize = TentSize.medium,
         status: Status = Status.Todo,
         primaryStakeHolder: string) {
-        super(title, startDate, endDate, priority, tentSize, status);
+        super(Id, title, startDate, endDate, priority, tentSize, status);
         this.primaryStakeHolder = primaryStakeHolder;
     }
 }

@@ -12,6 +12,7 @@ namespace Domains.Epics.Data
             {
                 new Epic()
                 {
+                    Id = 1,
                     PrimaryStakeHolder = "Phil",
                     Title = "Board",
                     Status = Status.Todo,
@@ -23,6 +24,7 @@ namespace Domains.Epics.Data
 
                 new Epic()
                 {
+                    Id = 2,
                     PrimaryStakeHolder = "JD",
                     Title = "App",
                     Status = Status.Todo,
@@ -34,6 +36,7 @@ namespace Domains.Epics.Data
 
                 new Epic()
                 {
+                    Id = 3,
                     PrimaryStakeHolder = "Matt",
                     Title = "WebSite",
                     Status = Status.Todo,
@@ -45,6 +48,7 @@ namespace Domains.Epics.Data
 
                 new Epic()
                 {
+                    Id = 4,
                     PrimaryStakeHolder = "Phil",
                     Title = "Setup",
                     Status = Status.InProgress,
@@ -56,6 +60,7 @@ namespace Domains.Epics.Data
 
                 new Epic()
                 {
+                    Id = 5,
                     PrimaryStakeHolder = "JD",
                     Title = "Ideas",
                     Status = Status.Done,
