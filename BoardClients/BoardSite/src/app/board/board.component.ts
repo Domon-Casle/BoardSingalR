@@ -23,6 +23,8 @@ export class BoardComponent implements OnInit {
   
   public loading: boolean = true;
 
+  public userName: string = "";
+
   constructor(
     private epicsService: EpicsService,
     private dragService: DragService,
@@ -33,11 +35,24 @@ export class BoardComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.loading = true;
     const epics = await this.epicsService.getAll();
+    this.mapEpics(epics);
 
+    this.setupSignalR();
+    this.loading = false;
+  }
+
+  private mapEpics(epics: Epic[]) {
     this.todo = epics.filter(e => e.status === Status.Todo);
     this.inProgress = epics.filter(e => e.status === Status.InProgress);
     this.done = epics.filter(e => e.status === Status.Done);
+  }
 
+  private setupSignalR() {
+    this.setupEpicUpdate();
+    this.setupEpicsUpdated();
+  }
+
+  private setupEpicUpdate() {
     this.signalRService.epicChanged.subscribe((data: EpicUpdate) => {
       switch(data.status) {
         case Status.Todo:          
@@ -67,7 +82,12 @@ export class BoardComponent implements OnInit {
           break;
       }
     });
-    this.loading = false;
+  }
+
+  private setupEpicsUpdated() {
+    this.signalRService.epicsChanged.subscribe((data: Epic[]) => {
+      this.mapEpics(data);
+    });
   }
 
   public drop(event: DragEvent, stop: Status) {
@@ -121,6 +141,7 @@ export class BoardComponent implements OnInit {
         break;
     }
 
-    this.signalRService.updateEpic(draggedItem, oldStatus);
+    // this.signalRService.updateEpic(draggedItem, oldStatus);
+    this.epicsService.update(draggedItem, oldStatus, this.signalRService.connectionId);
   }
 }

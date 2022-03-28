@@ -14,8 +14,18 @@ export class EpicsService extends BaseService  {
     super("epics");
   }
 
-  public getAll(): Promise<Epic[]> {
+  public getAll(): Promise<Epic[]> {    
     const url = this.buildUrl('getall');
     return this.http.get<Epic[]>(url).toPromise();
+  }
+
+  public update(epic: Epic, oldStatus: number, connectionId: string): Promise<Epic[]> {
+    let url = this.buildUrl('');
+    let body = {
+      epic: epic,
+      oldStatus: oldStatus,
+      connectionId: connectionId
+    };
+    return this.http.put<Epic[]>(url, body).toPromise();
   }
 }

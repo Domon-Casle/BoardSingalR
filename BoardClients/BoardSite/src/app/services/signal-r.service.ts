@@ -16,7 +16,9 @@ export class SignalRService {
 
   private hubConnection: signalR.HubConnection;
 
+  public connectionId: string = "";
   public epicChanged: Subject<EpicUpdate> = new Subject<EpicUpdate>();
+  public epicsChanged: Subject<Epic[]> = new Subject<Epic[]>();
 
   constructor() {
     this.hubConnection = new signalR.HubConnectionBuilder()
@@ -28,6 +30,7 @@ export class SignalRService {
   public startConnection = () => {
     this.hubConnection.start().then(() => {
       console.log('Connection Started');
+      this.getConnectionId();
     }).catch((err: Error) => console.log(err.message));
   }
 
@@ -38,11 +41,21 @@ export class SignalRService {
         status: oldStatus
       });
     });
+
+    this.hubConnection.on('UpdatedEpics', (data: Epic[]) => {
+      this.epicsChanged.next(data);
+    });
     // this.hubConnection.onreconnected
     // this.hubConnection.onreconnecting
   }
 
   public updateEpic(epic: Epic, oldStatus: number) {
     this.hubConnection.invoke('UpdateEpic', epic, oldStatus);
+  }
+
+  public getConnectionId(){
+    this.hubConnection.invoke('getConnectionId').then((connectionId) => {
+      this.connectionId = connectionId;
+    });
   }
 }

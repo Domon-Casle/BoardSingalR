@@ -9,6 +9,7 @@ import { CardComponent } from './board/card/card.component';
 import { EpicComponent } from './board/epic/epic.component';
 import { StoryComponent } from './board/story/story.component';
 import { TaskComponent } from './board/task/task.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TaskComponent } from './board/task/task.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
