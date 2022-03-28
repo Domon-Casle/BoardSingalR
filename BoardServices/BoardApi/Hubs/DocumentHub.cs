@@ -15,5 +15,10 @@ namespace BoardApi.Hubs
         {
             return Context.ConnectionId;
         }
+
+        public async Task setGroupQA()
+        {
+            await Groups.AddToGroupAsync(Context.ConnectionId, "QA");
+        }
     }
 }

@@ -144,4 +144,12 @@ export class BoardComponent implements OnInit {
     // this.signalRService.updateEpic(draggedItem, oldStatus);
     this.epicsService.update(draggedItem, oldStatus, this.signalRService.connectionId);
   }
+
+  public makeQA() {
+    this.signalRService.setGroupQA();
+    this.signalRService.devDone.subscribe((data: number) => {
+      let epic = this.done.find(x => x.id === data);
+      alert(`Epic "${epic?.title}" has been marked as dev done! Start testing`)
+    });
+  }
 }

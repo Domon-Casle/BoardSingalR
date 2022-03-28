@@ -30,8 +30,18 @@ namespace BoardApi.Controllers
         public async Task<IEnumerable<Epic>> UpdateEpic(EpicUpdate update)
         {
             var epics = domain.Update(update.Epic);
+
+            // Everyone except the sender
             await _hubContext.Clients.AllExcept(update.ConnectionId).SendAsync("UpdateEpic", update.Epic, update.OldStatus);
+
+            // Everyone
             //await _hubContext.Clients.All.SendAsync("UpdateEpic", update.Epic, update.OldStatus);
+
+            // If group is QA send alert
+            if (update.Epic.Status == Domains.Enums.Status.Done)
+            {
+                await _hubContext.Clients.Group("QA").SendAsync("DevDone", update.Epic.Id.ToString());
+            }
             return epics;
         }
 
