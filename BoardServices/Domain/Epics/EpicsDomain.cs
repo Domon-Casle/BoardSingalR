@@ -15,5 +15,10 @@ namespace Domains.Epics
         {
             return repo.GetAll();
         }
+
+        public IEnumerable<Epic> Update(Epic epic)
+        {
+            return repo.Update(epic);
+        }
     }
 }

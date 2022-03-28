@@ -10,5 +10,10 @@ namespace BoardApi.Hubs
         {
             await Clients.Others.SendAsync("UpdateEpic", epic, oldStatus);
         }
+
+        public string GetConnectionId()
+        {
+            return Context.ConnectionId;
+        }
     }
 }
